@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.5'
 gem 'haml-rails', '~> 1.0'
 gem 'petergate'
+gem 'figaro'
