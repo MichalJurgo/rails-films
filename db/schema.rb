@@ -10,15 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_29_111725) do
+ActiveRecord::Schema.define(version: 2018_09_29_171435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "films", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "short_description"
+    t.integer "duration"
+    t.date "release"
+    t.text "production"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "films_genres", id: false, force: :cascade do |t|
+    t.bigint "film_id"
+    t.bigint "genre_id"
+    t.index ["film_id"], name: "index_films_genres_on_film_id"
+    t.index ["genre_id"], name: "index_films_genres_on_genre_id"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
     t.boolean "accepted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
