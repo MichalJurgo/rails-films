@@ -36,4 +36,26 @@ RSpec.describe User, type: :model do
       expect(users[0].requested_friendships.size).to eq(1)
     end
   end
+
+  context 'library scopes tests' do
+    let(:user) { create(:random_user) }
+    let(:films) { create_list(:film, 5) }
+    let(:libraries) { build_list(:library, 5) }
+    before(:each) do
+      libraries.each_with_index.map do |library, i|
+        library.film = films[i]
+        library.user = user
+        library.save
+      end
+    end
+
+    it 'has films_seen' do
+      expect(user.films_seen.size).to eq(5)
+    end
+
+    it 'has films_to_see' do
+      libraries.last(2).map { |library| library.update(status_id: 2) }
+      expect(user.films_to_see.size).to eq(2)
+    end
+  end
 end
