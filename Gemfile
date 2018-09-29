@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -60,3 +61,5 @@ gem 'haml-rails', '~> 1.0'
 gem 'petergate'
 gem 'figaro'
 gem 'capybara'
+gem 'simplecov', require: false, group: :test
+gem 'faker'
