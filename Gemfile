@@ -65,3 +65,4 @@ gem 'simplecov', require: false, group: :test
 gem 'faker'
 gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails'
+gem 'react-rails'

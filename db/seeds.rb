@@ -22,16 +22,42 @@ Genre.create!(name: "Thriller")
 Genre.create!(name: "Biography")
 Genre.create!(name: "Musical")
 
-20.times do
-  Film.create!(
-    title: Faker::Lorem.word,
-    description: Faker::Lorem.paragraph(3),
-    short_description: Faker::Lorem.sentence(1),
-    duration: rand(60..180),
-    release: Faker::Date.between(40.years.ago, Date.today),
-    production: [Faker::Address.country]
-  )
-end
+Film.create!(title: "Ogniem i Mieczem",
+              short_description: "Adaptacja powieści Sienkiewicza, pierwsza część trylogii.",
+              description: Faker::Lorem.paragraph(3),
+              production: ["Polska"],
+              release: Date.parse("1999-02-08"),
+              duration: 175)
+
+Film.create!(title: "Django",
+              short_description: "O łowcy nagród i czarnoskórym niewolniku.",
+              description: Faker::Lorem.paragraph(3),
+              production: ["USA"],
+              release: Date.parse("2012-12-11"),
+              duration: 165)
+
+Film.create!(title: "Infiltracja",
+              short_description: "Tajny policjant i informator mafii.",
+              description: Faker::Lorem.paragraph(3),
+              production: ["Hongkong", "USA"],
+              release: Date.parse("2006-10-06"),
+              duration: 152)
+
+Film.create!(title: "Król rozrywki",
+              short_description: "Historia amerykańskiego artysy, P.T. Barnuma,
+              description: Faker::Lorem.paragraph(3),
+              założyciela cyrku.",
+              production: ["USA"],
+              release: Date.parse("2017-12-20"),
+              duration: 105)
+
+Film.create!(title: "Młoda Wiktoria",
+              short_description: "Wiktoria zostaje królową Zjednoczonego Królestwa
+              Wielkiej Brytanii.",
+              description: Faker::Lorem.paragraph(3),
+              production: ["USA", "Wielka Brytania"],
+              release: Date.parse("2009-03-06"),
+              duration: 100)
 
 Film.all.each do |film|
   film.genres << Genre.all.sample
