@@ -4,7 +4,6 @@ class CreateEmployments < ActiveRecord::Migration[5.2]
       t.string :job_details
       t.references :film, foreign_key: true
       t.references :person, foreign_key: true
-      t.references :job, foreign_key: true
       t.timestamps
     end
   end
