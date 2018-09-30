@@ -1,6 +1,5 @@
 - flash.each do |key, value|
+  -# -key == 'notice' ? key = 'info' : key = 'notice'
   %div{class: "alert alert-#{key}"}
     %a.close{"data-dismiss" => "alert", href: "#"} ×
-    %ul
-      %li
-        = value
+    = value

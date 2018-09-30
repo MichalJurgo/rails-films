@@ -1,9 +1,20 @@
-%nav
-  - if user_signed_in?
-    Signed in as
-    = current_user.name
-    = link_to 'Edit profile', edit_user_registration_path(current_user)
-    = link_to 'Logout', destroy_user_session_path, method: :delete
-  - else
-    = link_to 'Register', new_user_registration_path
-    = link_to 'Log in', new_user_session_path
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container
+    %a.navbar-brand{:href => root_path } RAILS-FILMS
+    %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.ml-auto
+        - if user_signed_in?
+          %li.nav-item.dropdown
+            %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle"   => "dropdown", :href => "https://example.com"}
+              = current_user.name
+            .dropdown-menu{"aria-labelledby" => "dropdown01"}
+              -# = link_to "Profile", current_user, class: 'dropdown-item'
+              = link_to "Edit profile", edit_user_registration_path, class: 'dropdown-item'
+              = link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        - else
+          %li.nav-item
+            = link_to "Register", new_user_registration_path, class: 'nav-link'
+          %li.nav-item
+            = link_to "Login", new_user_session_path, class: 'nav-link'

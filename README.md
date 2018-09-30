@@ -13,13 +13,13 @@ Rails application inspired by Filmweb.pl
 * Library model
   * Users can add films to their libraries.
   * Films can be marked as seen or to see.
-
-## Content to add
-
 * Person model
   * Various people - actors, directors, screenwriters.
 * Employment model
   * Connects people to films by their role (actor, director etc.)
+
+## Content to add
+
 * News
 * Comments
 * Controllers for everything (except Friendship - already added).
