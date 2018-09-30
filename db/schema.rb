@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_113413) do
+ActiveRecord::Schema.define(version: 2018_09_30_125446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employments", force: :cascade do |t|
+    t.string "job_details"
+    t.bigint "film_id"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "job"
+    t.index ["film_id"], name: "index_employments_on_film_id"
+    t.index ["person_id"], name: "index_employments_on_person_id"
+  end
 
   create_table "films", force: :cascade do |t|
     t.string "title"
@@ -89,6 +100,8 @@ ActiveRecord::Schema.define(version: 2018_09_30_113413) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "employments", "films"
+  add_foreign_key "employments", "people"
   add_foreign_key "libraries", "films"
   add_foreign_key "libraries", "users"
 end

@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :employment do
-    employment_type_id { 1 }
-    employment_details { "MyString" }
+    job_details { 'whatever' }
     film { nil }
     person { nil }
+    job { 'actor' }
   end
 end

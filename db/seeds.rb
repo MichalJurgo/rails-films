@@ -39,3 +39,21 @@ end
 
 Status.create!(name: "Seen")
 Status.create!(name: "To see")
+
+20.times do
+  Person.create!(
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    birthday: Faker::Date.between(80.years.ago, 25.years.ago),
+    place_of_birth: "#{Faker::Address.city}, #{Faker::Address.country}",
+    biography: Faker::Lorem.paragraph(3)
+  )
+end
+
+5.times do
+  Employment.create!(
+    person: Person.all.sample,
+    film: Film.all.sample,
+    job: ['actor', 'director', 'screenwriter'].sample
+  )
+end
