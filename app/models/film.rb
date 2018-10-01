@@ -7,8 +7,8 @@ class Film < ApplicationRecord
   has_and_belongs_to_many :genres
   has_many :employments
   has_many :people, through: :employments
+  has_many :actors, -> { Employment.as_actor }, class_name: 'Employment'
   has_many :directors, -> { Employment.as_director }, through: :employments, source: :person
-  has_many :actors, -> { Employment.as_actor }, through: :employments, source: :person
   has_many :screenwriters, -> { Employment.as_screenwriter }, through: :employments, source: :person
 
   def year

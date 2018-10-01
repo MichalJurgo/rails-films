@@ -1,2 +1,50 @@
-%h1 Films#show
-%p Find me in app/views/films/show.html.haml
+.film-page
+  .row
+    .col-md-6.film-details
+      %h1
+        = @film.title
+        %span.half-size= "(#{@film.release.year})"
+      %p= calculate_duration(@film)
+      %p= @film.short_description
+      %table
+        %tbody
+          %tr
+            %th director:
+            %td
+              - @film.directors.each do |director|
+                =link_to director.name, root_path
+          %tr
+            %th screenwriter:
+            %td
+              - @film.screenwriters.each do |screenwriter|
+                =link_to screenwriter.name, root_path
+          %tr
+            %th genre:
+            %td
+              = list_genres(@film)
+          %tr
+            %th prodution:
+            %td
+              = list_production(@film)
+          %tr
+            %th release:
+            %td
+              = @film.release
+  .row
+    .col-md-8
+      %h3 Film description
+      %p= @film.description
+  .film-cast
+    .row
+      .col-md-8
+        %h3 cast
+        - @film.actors.each_with_index do |actor, index|
+          .row
+            .col-md-3
+              %p
+                = link_to actor.person.name, root_path
+            .col-md-2.role-as
+              - if index == 0
+                = 'as: '
+            .col-md-3
+              %p= actor.job_details

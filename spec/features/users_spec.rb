@@ -80,7 +80,6 @@ RSpec.feature "Users", type: :feature do
       end
       click_button 'Update'
       expect(page).to have_content 'Your account has been updated successfully.'
-      expect(page).to have_content 'Signed in as Henryk Sienkiewicz'
     end
 
     scenario 'should fail' do

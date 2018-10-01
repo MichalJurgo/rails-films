@@ -9,7 +9,7 @@
           .col-md-10
             %h3
               %strong
-                = link_to film.title, root_path, class: 'title-link'
+                = link_to film.title, film_path(film), class: 'title-link'
               = "(#{film.release.year})"
             .additional-info
               .row
@@ -23,7 +23,7 @@
                   %span
                     %strong Production:
                   %ul
-                    %li= list_production film
+                    %li= list_production(film)
               .row
                 .col-md-6
                   %span
@@ -36,7 +36,7 @@
                     %strong Cast:
                   %ul
                     - film.actors.first(2).each do |actor|
-                      %li= actor.name
+                      %li= actor.person.name
             .row
               .col-md-12
                 = film.short_description

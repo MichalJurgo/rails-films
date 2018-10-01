@@ -1,5 +1,11 @@
 // HELPER CLASSES
 
+$light-grey: #808080;
+
+.half-size {
+  font-size: 50%;
+}
+
 .link-one {
   color: black;
 
@@ -108,4 +114,32 @@
 .films-filters > * {
   display: block;
   margin: 5px auto 5px auto;
+}
+
+
+// FILM SHOW PAGE
+.film-page {
+  margin-top: 25px;
+}
+
+.film-details {
+  width: 46%;
+  margin-bottom: 25px;
+
+  table {
+    th {
+      padding-right: 10px;
+      color: $light-grey;
+      font-weight: normal;
+    }
+  }
+
+  a:not(:last-child):after {
+    content: ", ";
+  }
+}
+
+.role-as {
+  text-align: right;
+  color: $light-grey;
 }
