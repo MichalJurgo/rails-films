@@ -24,29 +24,29 @@ Genre.create!(name: "Musical")
 
 Film.create!(title: "Ogniem i Mieczem",
               short_description: "Adaptacja powieści Sienkiewicza, pierwsza część trylogii.",
-              description: Faker::Lorem.paragraph(3),
+              description: Faker::Lorem.paragraphs(3),
               production: ["Polska"],
               release: Date.parse("1999-02-08"),
               duration: 175)
 
 Film.create!(title: "Django",
               short_description: "O łowcy nagród i czarnoskórym niewolniku.",
-              description: Faker::Lorem.paragraph(3),
+              description: Faker::Lorem.paragraphs(3),
               production: ["USA"],
               release: Date.parse("2012-12-11"),
               duration: 165)
 
 Film.create!(title: "Infiltracja",
               short_description: "Tajny policjant i informator mafii.",
-              description: Faker::Lorem.paragraph(3),
+              description: Faker::Lorem.paragraphs(3),
               production: ["Hongkong", "USA"],
               release: Date.parse("2006-10-06"),
               duration: 152)
 
 Film.create!(title: "Król rozrywki",
               short_description: "Historia amerykańskiego artysy, P.T. Barnuma,
-              description: Faker::Lorem.paragraph(3),
               założyciela cyrku.",
+              description: Faker::Lorem.paragraphs(3),
               production: ["USA"],
               release: Date.parse("2017-12-20"),
               duration: 105)
@@ -54,7 +54,7 @@ Film.create!(title: "Król rozrywki",
 Film.create!(title: "Młoda Wiktoria",
               short_description: "Wiktoria zostaje królową Zjednoczonego Królestwa
               Wielkiej Brytanii.",
-              description: Faker::Lorem.paragraph(3),
+              description: Faker::Lorem.paragraphs(3),
               production: ["USA", "Wielka Brytania"],
               release: Date.parse("2009-03-06"),
               duration: 100)
@@ -72,7 +72,7 @@ Status.create!(name: "To see")
     lastname: Faker::Name.last_name,
     birthday: Faker::Date.between(80.years.ago, 25.years.ago),
     place_of_birth: "#{Faker::Address.city}, #{Faker::Address.country}",
-    biography: Faker::Lorem.paragraph(3)
+    biography: Faker::Lorem.paragraphs(3)
   )
 end
 

@@ -1,1 +1,42 @@
-= react_component('FilmsContainer', { films: @films })
+.films-index
+  %h1.text-center
+    %strong Films
+
+  .row
+    .col-md-8
+      - @films.each do |film|
+        .single-film
+          .col-md-10
+            %h3
+              %strong
+                = link_to film.title, root_path, class: 'title-link'
+              = "(#{film.release.year})"
+            .additional-info
+              .row
+                .col-md-6
+                  %span
+                    %strong Genre:
+                  %ul
+                    - film.genres.each do |genre|
+                      %li= genre.name
+                .col-md-6
+                  %span
+                    %strong Production:
+                  %ul
+                    %li= list_production film
+              .row
+                .col-md-6
+                  %span
+                    %strong Director:
+                  %ul
+                    - film.directors.each do |director|
+                      %li= director.name
+                .col-md-6
+                  %span
+                    %strong Cast:
+                  %ul
+                    - film.actors.first(2).each do |actor|
+                      %li= actor.name
+              .row
+                .col-md-12
+                  = film.short_description

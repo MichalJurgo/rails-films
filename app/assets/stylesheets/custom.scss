@@ -1,3 +1,14 @@
+// HELPER CLASSES
+
+.link-one {
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+}
+
+
 /*flash*/
 .alert-error {
     background-color: #f2dede;
@@ -26,3 +37,38 @@
     color: #468847;
     text-align: left;
  }
+
+ .single-film {
+   border: 1px solid #cccccc;
+   margin-bottom: 10px;
+   padding: 10px 20px;
+   h3 {
+     margin-top: 10px;
+   }
+
+   .title-link {
+     @extend .link-one;
+     transition: color .3s;
+     &:hover {
+       text-decoration: none;
+       color: rgba(128, 128, 128, 1);
+
+     }
+   }
+ }
+
+ .additional-info  {
+  ul {
+    display: inline;
+    padding-left: 5px;
+
+    li {
+      list-style-type: none;
+      display: inline;
+    }
+
+    li:not(:last-child):after {
+      content: ", ";
+    }
+  }
+}

@@ -22,9 +22,26 @@ RSpec.describe Film, type: :model do
   context 'association tests' do
     let(:film) { create(:film) }
     let(:genre) { create(:genre) }
+    let(:person) { create(:person) }
+    let(:employment) { create(:employment, film: film, person: person) }
     it 'has genres' do
       film.genres << genre
       expect(film.genres.size).to eq(1)
+    end
+
+    it 'has directors' do
+      employment.update(job: 'director')
+      expect(film.directors.size).to eq(1)
+    end
+
+    it 'has actors' do
+      employment.update(job: 'actor')
+      expect(film.actors.size).to eq(1)
+    end
+
+    it 'has screenwriters' do
+      employment.update(job: 'screenwriter')
+      expect(film.screenwriters.size).to eq(1)
     end
   end
 end

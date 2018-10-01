@@ -8,7 +8,7 @@ var FilmsContainer = createReactClass({
   render: function() {
     return (
       <div>
-        <h1>Films</h1>
+        <h1 className='text-center'>Films</h1>
         <FilmTable films={this.state.films} />
       </div>
     );
