@@ -12,12 +12,12 @@
             %th director:
             %td
               - @film.directors.each do |director|
-                =link_to director.name, root_path
+                =link_to director.name, person_path(director)
           %tr
             %th screenwriter:
             %td
               - @film.screenwriters.each do |screenwriter|
-                =link_to screenwriter.name, root_path
+                =link_to screenwriter.name, person_path(screenwriter)
           %tr
             %th genre:
             %td
@@ -42,7 +42,7 @@
           .row
             .col-md-3
               %p
-                = link_to actor.person.name, root_path
+                = link_to actor.person.name, person_path(actor.person)
             .col-md-2.role-as
               - if index == 0
                 = 'as: '

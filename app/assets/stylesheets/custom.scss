@@ -143,3 +143,35 @@ $light-grey: #808080;
   text-align: right;
   color: $light-grey;
 }
+
+// PERSON SHOW PAGE
+.person-details {
+  margin-top: 25px;
+  ul {
+    display: inline;
+
+    li {
+      display: inline;
+      list-style-type: none;
+    }
+  }
+}
+
+.person-filmography {
+  margin-top: 25px;
+  button {
+    @extend .basic-button;
+    &:hover {
+      background-color: #2f2f2f;
+      border-color: #101010;
+    }
+    &:focus {
+      background-color: #2f2f2f;
+      border-color: #101010;
+    }
+  }
+}
+
+.person-biography {
+  margin-top: 20px;
+}

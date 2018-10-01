@@ -30,13 +30,15 @@
                     %strong Director:
                   %ul
                     - film.directors.each do |director|
-                      %li= director.name
+                      %li
+                        = link_to director.name, person_path(director)
                 .col-md-6
                   %span
                     %strong Cast:
                   %ul
                     - film.actors.first(2).each do |actor|
-                      %li= actor.person.name
+                      %li
+                        = link_to actor.person.name, person_path(actor.person)
             .row
               .col-md-12
                 = film.short_description

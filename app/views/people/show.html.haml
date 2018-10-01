@@ -1,0 +1,60 @@
+.container.person-page
+  .row
+    .col-md-6.person-details
+      %h1= @person.name
+      %table
+        %tbody
+          %tr
+            %th birthday:
+            %td
+              %ul
+                %li= @person.birthday if !@person.birthday.nil?
+          %tr
+            %th birthplace:
+            %td
+              %ul
+                %li= @person.place_of_birth
+  .person-filmography
+    .row
+      .col-md-8
+        %h3 filmography
+        %button.btn.btn-primary{:type => "button", "data-toggle" => "collapse", "data-target" => "#filmography-actor",
+        "aria-expanded" => "false", "aria-controls" => "filmography-actor"} actor
+        %button.btn.btn-primary{:type => "button", "data-toggle" => "collapse", "data-target" => "#filmography-director",
+        "aria-expanded" => "false", "aria-controls" => "filmography-director"} director
+        %button.btn.btn-primary{:type => "button", "data-toggle" => "collapse", "data-target" => "#filmography-screenwriter",
+        "aria-expanded" => "false", "aria-controls" => "filmography-screenwriter"} screenwriter
+        .collapse#filmography-actor
+          %h4 actor
+          - @person.acting_roles.each do |role|
+            .row
+              .col-md-1
+                %p= role.film.release.year
+              .col-md-3
+                %p
+                  = link_to role.film.title, role.film
+              .col-md-3
+                %p= role.job_details
+        .collapse#filmography-director
+          %h4 director
+          - @person.directed_films.each do |directed|
+            .row
+              .col-md-1
+                %p= directed.film.release.year
+              .col-md-3
+                %p
+                  = link_to directed.film.title, directed.film
+        .collapse#filmography-screenwriter
+          %h4 screenwriter
+          - @person.written_films.each do |written|
+            .row
+              .col-md-1
+                %p= written.film.release.year
+              .col-md-3
+                %p
+                  = link_to written.film.title, written.film
+  .person-biography
+    .row
+      .col-md-8
+        %h3 biography
+        %p= @person.biography
