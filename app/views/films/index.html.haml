@@ -1,61 +1,19 @@
 .films-index
   %h1.text-center
     %strong Films
-
   .row
     .col-md-8
-      - @films.each do |film|
-        .single-film
-          .col-md-10
-            %h3
-              %strong
-                = link_to film.title, film_path(film), class: 'title-link'
-              = "(#{film.release.year})"
-            .additional-info
-              .row
-                .col-md-6
-                  %span
-                    %strong Genre:
-                  %ul
-                    - film.genres.each do |genre|
-                      %li= genre.name
-                .col-md-6
-                  %span
-                    %strong Production:
-                  %ul
-                    %li= list_production(film)
-              .row
-                .col-md-6
-                  %span
-                    %strong Director:
-                  %ul
-                    - film.directors.each do |director|
-                      %li
-                        = link_to director.name, person_path(director)
-                .col-md-6
-                  %span
-                    %strong Cast:
-                  %ul
-                    - film.actors.first(2).each do |actor|
-                      %li
-                        = link_to actor.person.name, person_path(actor.person)
-            .row
-              .col-md-12
-                = film.short_description
+      = render @films
     .col-md-4
       .col-md-4.text-center
       %h2.text-center Filter results
       = search_form_for @q, html: {class: 'films-filters'} do |f|
-
         .filter-title
           = f.label :title_cont, class: 'sr-only'
-          = f.search_field :title_cont, placeholder: "Title includes"
-
+          = f.search_field :title_cont, placeholder: "Title includes", class: 'form-control'
         .filter-genre
-          = f.select :genres_name_in, Genre.list_genres, { include_blank: "All genres" }
-
-        .filter-premiere
-          = f.date_select :release_gteq, {prompt: "Year from", start_year: Time.now.year, end_year: 1888, order: [:year], }
-          = f.date_select :release_year_lteq, {prompt: "Year to", start_year: Time.now.year, end_year: 1888, order: [:year], }
-
+          = f.select :genres_name_in, Genre.list_genres, { include_blank: "All genres" }, class: 'form-control'
+        .filter-premiere.form-group
+          = f.date_select :release_gteq, {prompt: "Year from", start_year: Time.now.year, end_year: 1888, order: [:year], }, class: 'form-control form-control-sm'
+          = f.date_select :release_year_lteq, {prompt: "Year to", start_year: Time.now.year, end_year: 1888, order: [:year], }, class: 'form-control form-control-sm'
         = f.submit "Filter", class: 'filter-button btn'

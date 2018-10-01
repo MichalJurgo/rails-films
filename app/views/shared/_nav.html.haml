@@ -6,6 +6,7 @@
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
         %li= link_to "FILMS", films_path, class: 'nav-link'
+        %li= link_to "NEWS", news_index_path, class: 'nav-link'
       %ul.navbar-nav.ml-auto
         - if user_signed_in?
           %li.nav-item.dropdown

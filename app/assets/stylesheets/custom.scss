@@ -6,6 +6,10 @@ $light-grey: #808080;
   font-size: 50%;
 }
 
+.size-80 {
+  font-size: 80%;
+}
+
 .link-one {
   color: black;
 
@@ -88,20 +92,21 @@ $light-grey: #808080;
 
 .films-filters {
   text-align: center;
-
+  padding: auto;
   .filter-title input[type="search"] {
-    width: 70%;
     font-size: 1.2em;
   }
 
   .filter-genre select {
-    width: 70%;
     font-size: 1.2em;
   }
 
-  .filter-premiere select {
-    width: 34.5%;
-    font-size: 1.2em;
+  .filter-premiere  {
+    display: flex;
+    select {
+      width: 50%;
+      font-size: 1.2em;
+    }
   }
 
   .filter-button {
@@ -174,4 +179,13 @@ $light-grey: #808080;
 
 .person-biography {
   margin-top: 20px;
+}
+
+// NEWS INDEX
+.news-index {
+  margin: 25px 0;
+  .card {
+    // width: 75%;
+    margin: 10px 0;
+  }
 }

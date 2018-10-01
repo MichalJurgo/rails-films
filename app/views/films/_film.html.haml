@@ -1,0 +1,37 @@
+.single-film
+  .col-md-10
+    %h3
+      %strong
+        = link_to film.title, film_path(film), class: 'title-link'
+      = "(#{film.release.year})"
+    .additional-info
+      .row
+        .col-md-6
+          %span
+            %strong Genre:
+          %ul
+            - film.genres.each do |genre|
+              %li= genre.name
+        .col-md-6
+          %span
+            %strong Production:
+          %ul
+            %li= list_production(film)
+      .row
+        .col-md-6
+          %span
+            %strong Director:
+          %ul
+            - film.directors.each do |director|
+              %li
+                = link_to director.name, person_path(director)
+        .col-md-6
+          %span
+            %strong Cast:
+          %ul
+            - film.actors.first(2).each do |actor|
+              %li
+                = link_to actor.person.name, person_path(actor.person)
+    .row
+      .col-md-12
+        = film.short_description

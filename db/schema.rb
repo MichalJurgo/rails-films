@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_125446) do
+ActiveRecord::Schema.define(version: 2018_10_01_150557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 2018_09_30_125446) do
     t.index ["user_id"], name: "index_libraries_on_user_id"
   end
 
+  create_table "news", force: :cascade do |t|
+    t.string "heading"
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "film_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_news_on_film_id"
+    t.index ["user_id"], name: "index_news_on_user_id"
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -104,4 +115,6 @@ ActiveRecord::Schema.define(version: 2018_09_30_125446) do
   add_foreign_key "employments", "people"
   add_foreign_key "libraries", "films"
   add_foreign_key "libraries", "users"
+  add_foreign_key "news", "films"
+  add_foreign_key "news", "users"
 end

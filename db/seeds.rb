@@ -15,6 +15,15 @@ User.create!(
   password_confirmation: "asdfgh"
 )
 
+User.create!(
+  email: "zagloba@example.com",
+  firstname: "Jan",
+  lastname: "Zagłoba",
+  birthday: Date.parse("1620-10-30"),
+  password: "asdfgh",
+  password_confirmation: "asdfgh"
+)
+
 Genre.create!(name: "History")
 Genre.create!(name: "Adventure")
 Genre.create!(name: "Western")
@@ -81,5 +90,14 @@ end
     person: Person.all.sample,
     film: Film.all.sample,
     job: ['actor', 'director', 'screenwriter'].sample
+  )
+end
+
+20.times do
+  News.create!(
+    heading: Faker::Lorem.paragraph(1),
+    body: Faker::Lorem.paragraphs(10).join,
+    film: Film.all.sample,
+    user: User.all.sample
   )
 end

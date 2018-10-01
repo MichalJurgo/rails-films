@@ -1,0 +1,17 @@
+.news-index
+  %h1.text-center
+    %strong News
+  = paginate @news
+  - @news.in_groups_of(2, false).each do |group|
+    .row
+      - group.each do |news|
+        .col-md-6
+          .card
+            .card-body
+              .row
+                .col-md-10
+                  %h5.card-title= link_to news.heading, news
+                  %p.size-80.text-secondary= news.created_at.strftime("on %m/%d/%Y")
+              %p.card-text= truncate(news.body, length: 250)
+              = link_to "Read more", news
+  = paginate @news
