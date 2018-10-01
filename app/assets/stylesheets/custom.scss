@@ -8,6 +8,12 @@
   }
 }
 
+.basic-button {
+  background-color: #101010;
+  border-color: #101010;
+  color: white;
+}
+
 
 /*flash*/
 .alert-error {
@@ -58,6 +64,7 @@
  }
 
  .additional-info  {
+  margin-bottom: 10px;
   ul {
     display: inline;
     padding-left: 5px;
@@ -71,4 +78,34 @@
       content: ", ";
     }
   }
+}
+
+.films-filters {
+  text-align: center;
+
+  .filter-title input[type="search"] {
+    width: 70%;
+    font-size: 1.2em;
+  }
+
+  .filter-genre select {
+    width: 70%;
+    font-size: 1.2em;
+  }
+
+  .filter-premiere select {
+    width: 34.5%;
+    font-size: 1.2em;
+  }
+
+  .filter-button {
+    @extend .basic-button;
+    width: 35%;
+    font-size: 1.2em;
+  }
+}
+
+.films-filters > * {
+  display: block;
+  margin: 5px auto 5px auto;
 }

@@ -10,4 +10,8 @@ class Film < ApplicationRecord
   has_many :directors, -> { Employment.as_director }, through: :employments, source: :person
   has_many :actors, -> { Employment.as_actor }, through: :employments, source: :person
   has_many :screenwriters, -> { Employment.as_screenwriter }, through: :employments, source: :person
+
+  def year
+    self.release.year
+  end
 end

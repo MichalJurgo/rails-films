@@ -37,6 +37,23 @@
                   %ul
                     - film.actors.first(2).each do |actor|
                       %li= actor.name
-              .row
-                .col-md-12
-                  = film.short_description
+            .row
+              .col-md-12
+                = film.short_description
+    .col-md-4
+      .col-md-4.text-center
+      %h2.text-center Filter results
+      = search_form_for @q, html: {class: 'films-filters'} do |f|
+
+        .filter-title
+          = f.label :title_cont, class: 'sr-only'
+          = f.search_field :title_cont, placeholder: "Title includes"
+
+        .filter-genre
+          = f.select :genres_name_in, Genre.list_genres, { include_blank: "All genres" }
+
+        .filter-premiere
+          = f.date_select :release_gteq, {prompt: "Year from", start_year: Time.now.year, end_year: 1888, order: [:year], }
+          = f.date_select :release_year_lteq, {prompt: "Year to", start_year: Time.now.year, end_year: 1888, order: [:year], }
+
+        = f.submit "Filter", class: 'filter-button btn'
