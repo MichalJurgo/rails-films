@@ -54,6 +54,11 @@ $light-grey: #808080;
     text-align: left;
  }
 
+// FILMS INDEX PAGE
+.films-index {
+  margin-top: 25px;
+}
+
  .single-film {
    border: 1px solid #cccccc;
    margin-bottom: 10px;
@@ -94,18 +99,18 @@ $light-grey: #808080;
   text-align: center;
   padding: auto;
   .filter-title input[type="search"] {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .filter-genre select {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .filter-premiere  {
     display: flex;
     select {
       width: 50%;
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
   }
 
