@@ -17,10 +17,10 @@ Rails application inspired by Filmweb.pl
   * Various people - actors, directors, screenwriters.
 * Employment model
   * Connects people to films by their role (actor, director etc.)
+* News
+* Adding movies to user's library
 
 ## Content to add
 
-* News
 * Comments
-* Controllers for everything (except Friendship - already added).
 * Whole front end side of app.

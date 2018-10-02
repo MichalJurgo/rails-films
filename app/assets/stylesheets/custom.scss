@@ -149,6 +149,18 @@ $light-grey: #808080;
   color: $light-grey;
 }
 
+.rating-panel {
+  select {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 6px 12px;
+    background-color: white;
+    margin: 5px 5px 0px 0px;
+    width: 70%;
+  }
+}
+
 // PERSON SHOW PAGE
 .person-details {
   margin-top: 25px;

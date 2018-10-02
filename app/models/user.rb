@@ -41,8 +41,11 @@ class User < ApplicationRecord
 	  active_friends | received_friends
 	end
 
-  # Pending friends
   def pending
 		pending_friends | requested_friendships
 	end
+
+  def films
+    films_seen | films_to_see
+  end
 end

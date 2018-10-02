@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :films, only: [:index, :show]
   resources :people, only: [:show]
   resources :news
+  resources :libraries
 end

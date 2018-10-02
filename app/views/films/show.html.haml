@@ -1,6 +1,6 @@
 .film-page
   .row
-    .col-md-6.film-details
+    .col-md-8.film-details
       %h1
         = @film.title
         %span.half-size= "(#{@film.release.year})"
@@ -30,6 +30,17 @@
             %th release:
             %td
               = @film.release
+    .col-md-4.rating-panel
+      - if !user_signed_in?
+        %p
+          = link_to 'Log in', new_user_session_path
+          = ' to add films to library'
+      - else
+        - if current_user.films.include?(@film)
+          - @library = current_user.libraries.where(film: @film).first
+          %h4 In library
+          = button_to "Remove from library", library_path(@library), method: :delete, class: 'btn btn-danger'
+        = render 'library_form'
   .row
     .col-md-8
       %h3 Film description
@@ -48,3 +59,11 @@
                 = 'as: '
             .col-md-3
               %p= actor.job_details
+  .film-news
+    %h3 news
+    .row
+      - @film.news.last(2).each do |n|
+        .col-md-4
+          %h4
+            = link_to n.heading, n
+          %p= "#{n.body[0...40]}..."

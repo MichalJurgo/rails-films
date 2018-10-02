@@ -1,0 +1,8 @@
+= form_for @library do |f|
+
+  = f.select :status_id, Status.all.collect { |s| [s.name, s.id] }, class: 'custom-select'
+  = f.number_field :user_id, value: current_user.id, readonly: true, hidden: true
+  = f.number_field :film_id, value: @film.id, readonly: true, hidden: true
+
+
+  = f.submit "Save", class: 'btn basic-button'
