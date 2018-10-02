@@ -1,0 +1,10 @@
+.news-show.col-md-9
+  %h1= @news.heading
+  %p.news-info
+    autor:
+    = link_to "#{@news.user.name}", root_path
+    = "| #{@news.created_at}"
+    - if logged_in? && current_user.editor?
+      = link_to "| edytuj", edit_news_path(@news)
+  .news-body
+    %p= markdown(@news.body)

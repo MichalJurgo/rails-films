@@ -189,3 +189,32 @@ $light-grey: #808080;
     margin: 10px 0;
   }
 }
+
+// NEWS SHOW PAGE
+.news-show {
+  margin: 25px 0;
+}
+
+.news-info {
+  color: #9d9d9d;
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.news-body {
+  margin-top: 10px;
+}
+
+// NEWS FORM
+.news-form {
+  text-align: center;
+  margin: 25px 0;
+  form {
+    width: 75%;
+    margin: auto;
+  }
+}

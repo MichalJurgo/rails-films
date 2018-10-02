@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :films_seen, -> { Library.seen }, through: :libraries, source: :film
   has_many :films_to_see, -> { Library.to_see }, through: :libraries, source: :film
 
+  has_many :news
+
   def name
    if !self.firstname.nil? || !self.lastname.nil?
      "#{self.firstname} #{self.lastname}"

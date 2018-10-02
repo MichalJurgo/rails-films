@@ -1,0 +1,9 @@
+= form_for news do |form|
+  .form-group
+    = form.text_field :heading, placeholder: 'Heading', class: 'form-control'
+  .form-group
+    = form.text_area :body, rows: 15, placeholder: 'Content', class: 'form-control'
+  .form-group
+    = form.select :film_id, Film.all.collect { |f| [f.title, f.id] }, { include_blank: "film" }, class: 'form-control'
+  .form-group
+    = form.submit 'Submit', class: 'btn basic-button'
