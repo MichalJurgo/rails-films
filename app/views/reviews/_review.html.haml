@@ -1,0 +1,5 @@
+.review
+  %h5= link_to review.user.name, root_path
+  %p= "Rating: #{review.rating}"
+  %p= review.body
+  = link_to 'Read more', film_review_path(review.film, review)

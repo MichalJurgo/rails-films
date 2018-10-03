@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
   resources :friendships, only: [:create, :update, :destroy]
-  resources :films, only: [:index, :show]
+  resources :films, only: [:index, :show] do
+    resources :reviews, only: [:index, :show, :new, :create]
+  end
   resources :people, only: [:show]
   resources :news
   resources :libraries

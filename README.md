@@ -18,7 +18,7 @@ Rails application inspired by Filmweb.pl
 * Employment model
   * Connects people to films by their role (actor, director etc.)
 * News
-* Adding movies to user's library
+* Adding films to user's library
 
 ## Content to add
 

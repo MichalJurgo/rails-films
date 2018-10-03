@@ -24,6 +24,16 @@ $light-grey: #808080;
   color: white;
 }
 
+.basic-form {
+  width: 75%;
+  margin: auto;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+
 
 /*flash*/
 .alert-error {
@@ -60,6 +70,7 @@ $light-grey: #808080;
 }
 
  .single-film {
+   background-color: white;
    border: 1px solid #cccccc;
    margin-bottom: 10px;
    padding: 10px 20px;
@@ -164,6 +175,26 @@ $light-grey: #808080;
     margin: 5px 5px 0px 0px;
     width: 70%;
   }
+
+  .rating-stats {
+    display: inline-block;
+
+    .rating {
+      font-size: 3em;
+      margin-left: 15px;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+
+    .rating-count {
+      font-size: 1.5em;
+      vertical-align: middle;
+    }
+
+    i {
+      vertical-align: middle;
+    }
+  }
 }
 
 // PERSON SHOW PAGE
@@ -234,4 +265,23 @@ $light-grey: #808080;
     width: 75%;
     margin: auto;
   }
+}
+
+// REVIEWS
+.reviews-index {
+  width: 75%;
+  margin: 25px auto;
+}
+
+.review-show {
+  margin: 25px auto;
+  width: 75%;
+}
+
+.review {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 20px;
 }

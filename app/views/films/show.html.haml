@@ -41,13 +41,16 @@
           %h4 In library
           = button_to "Remove from library", library_path(@library), method: :delete, class: 'btn btn-danger'
         = render 'library_form'
+      .rating-stats
+        = fa_icon "star", class: "fa-3x"
+        %span.rating= @film.average_rating
+        %span.rating-count
+          = pluralize(@film.reviews.size, 'vote')
   .row
     .col-md-8
       %h3 Film description
       %p= @film.description
-  .film-cast
-    .row
-      .col-md-8
+      .film-cast
         %h3 cast
         - @film.actors.each_with_index do |actor, index|
           .row
@@ -59,11 +62,23 @@
                 = 'as: '
             .col-md-3
               %p= actor.job_details
-  .film-news
-    %h3 news
-    .row
-      - @film.news.last(2).each do |n|
-        .col-md-4
-          %h4
-            = link_to n.heading, n
-          %p= "#{n.body[0...40]}..."
+      .film-news
+        %h3 news
+        .row
+          - @film.news.last(2).each do |n|
+            .col-md-6
+              %h4
+                = link_to n.heading, n
+              %p= "#{n.body[0...40]}..."
+    .col-md-4
+      %h3
+        Recent reviews
+        |
+        = link_to 'See all', film_reviews_path(@film)
+      %p= link_to 'Write your review', new_film_review_path(@film) if user_signed_in? && current_user.film_review(@film).empty?
+      - @film.reviews.last(3).each do |r|
+        .review
+          %h5= link_to r.user.name, root_path
+          %p= "Rating: #{r.rating}"
+          %p= "#{r.body[0...40]}..."
+          = link_to 'Read more', film_review_path(r.film, r)

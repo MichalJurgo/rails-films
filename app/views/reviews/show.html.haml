@@ -1,0 +1,10 @@
+.review.review-show
+  %h1
+    Review for
+    = @review.film.title
+  %p.review-info
+    author:
+    = link_to "#{@review.user.name}", root_path
+    = "| #{@review.created_at}"
+  .review-body
+    %p= markdown(@review.body)

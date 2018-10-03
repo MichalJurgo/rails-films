@@ -28,6 +28,7 @@ class User < ApplicationRecord
   has_many :films_to_see, -> { Library.to_see }, through: :libraries, source: :film
 
   has_many :news
+  has_many :reviews
 
   def name
    if !self.firstname.nil? || !self.lastname.nil?
@@ -47,5 +48,9 @@ class User < ApplicationRecord
 
   def films
     films_seen | films_to_see
+  end
+
+  def film_review(film)
+    reviews.where(film: film)
   end
 end

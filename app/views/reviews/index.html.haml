@@ -1,0 +1,9 @@
+.reviews-index
+  %h1
+    Reviews for
+    = @film.title
+  %h4
+    Average rating for this film:
+    = @film.average_rating
+
+  = render @reviews
