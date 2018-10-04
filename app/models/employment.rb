@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: employments
+#
+#  id          :bigint(8)        not null, primary key
+#  job_details :string
+#  film_id     :bigint(8)
+#  person_id   :bigint(8)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  job         :string
+#
+
 class Employment < ApplicationRecord
   validates :job, presence: true
 

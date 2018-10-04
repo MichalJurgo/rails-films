@@ -13,9 +13,11 @@
             %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle"   => "dropdown", :href => "https://example.com"}
               = current_user.name
             .dropdown-menu{"aria-labelledby" => "dropdown01"}
-              -# = link_to "Profile", current_user, class: 'dropdown-item'
+              = link_to "Profile", current_user, class: 'dropdown-item'
               = link_to "Edit profile", edit_user_registration_path, class: 'dropdown-item'
               = link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item'
+          %li.nav-item
+            = gravatar_for(current_user, size: 40)
         - else
           %li.nav-item
             = link_to "Register", new_user_registration_path, class: 'nav-link'

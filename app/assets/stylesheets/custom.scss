@@ -10,6 +10,10 @@ $light-grey: #808080;
   font-size: 80%;
 }
 
+.size-120 {
+  font-size: 1.2em;
+}
+
 .link-one {
   color: black;
 
@@ -284,4 +288,12 @@ body {
   margin-bottom: 5px;
   border: 1px solid black;
   border-radius: 20px;
+}
+
+// USER SHOW
+.user-profile {
+  margin-top: 25px;
+  img {
+    margin-bottom: 10px;
+  }
 }

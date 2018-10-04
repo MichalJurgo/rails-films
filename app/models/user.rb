@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint(8)        not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  firstname              :string
+#  lastname               :string
+#  birthday               :date
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  roles                  :string
+#
+
 class User < ApplicationRecord
   ############################################################################################
   ## PeterGate Roles                                                                        ##
@@ -53,4 +71,8 @@ class User < ApplicationRecord
   def film_review(film)
     reviews.where(film: film)
   end
+
+  def average_rating
+    reviews.average(:rating).to_f.round(1)
+	end
 end

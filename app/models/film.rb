@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: films
+#
+#  id                :bigint(8)        not null, primary key
+#  title             :string
+#  description       :text
+#  short_description :text
+#  duration          :integer
+#  release           :date
+#  production        :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Film < ApplicationRecord
   serialize :production, Array
 

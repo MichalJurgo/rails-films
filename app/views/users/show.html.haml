@@ -1,0 +1,34 @@
+.user-profile
+  .row
+    .col-md-3
+      = gravatar_for(@user, size: 160)
+      %br
+      %h4= @user.name
+      .row
+        .col-md-3
+          = "Birthday:"
+        .col-md-6
+          = @user.birthday
+      %h4 Friends
+      - @user.friends.in_groups_of(2, false) do |group|
+        .row
+          - group.each do |friend|
+            .col-md-4.user-friend
+              = gravatar_for(friend, size: 50)
+              %p.size-80= link_to friend.name, friend
+    .col-md-5
+      %h2.font-weight-bold= "#{@user.name}'s reviews"
+      = render @user.reviews
+    .col-md-4
+      %h2.font-weight-bold Average film rating:
+      %p.size-120
+        = @user.average_rating
+        |
+        %span.rating-count
+          = pluralize(@user.reviews.size, 'vote')
+      %h2.font-weight-bold Films seen
+      - @user.films_seen.each do |film|
+        %p= link_to film.title, film_path(film)
+      %h2.font-weight-bold Films to see
+      - @user.films_to_see.each do |film|
+        %p= link_to film.title, film_path(film)

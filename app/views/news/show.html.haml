@@ -2,7 +2,7 @@
   %h1= @news.heading
   %p.news-info
     autor:
-    = link_to "#{@news.user.name}", root_path
+    = link_to "#{@news.user.name}", user_path(@news.user)
     = "| #{@news.created_at}"
     - if logged_in? && current_user.editor?
       = link_to "| edytuj", edit_news_path(@news)
