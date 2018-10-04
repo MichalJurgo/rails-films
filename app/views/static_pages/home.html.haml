@@ -1,2 +1,25 @@
-%h1 RAILS-FILMS
-%p Homepage for my app!
+.homepage
+  %h1.text-center.font-weight-bold RAILS-FILMS
+  .row
+    .col-md-6
+      .recent-news
+        %h2
+          Recent news
+          |
+          = link_to 'See all', news_index_path
+        = render News.last(7)
+    .col-md-6
+      .recent-films
+        %h2 Recent films
+        - Film.recent.each do |film|
+          .film-mini
+            %h5= link_to film.title, film_path(film)
+            %p= film.release
+            %p= film.short_description
+  %hr
+  .row
+    - if user_signed_in?
+      .col-md-6
+        .friends-reviews
+          %h2 Recent friends reviews
+          = render current_user.reviews_feed.last(5)

@@ -36,4 +36,8 @@ class Film < ApplicationRecord
   def average_rating
     reviews.average(:rating).to_f.round(1)
 	end
+
+  def self.recent
+    Film.order(release: :desc).last(5)
+  end
 end
