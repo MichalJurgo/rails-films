@@ -64,6 +64,18 @@ class User < ApplicationRecord
 		pending_friends | requested_friendships
 	end
 
+  def friends_with?(user)
+    friends.include?(user)
+  end
+
+  def friendship_with(user)
+    Friendship.where("user_id = ? OR friend_id = ?", user.id, user.id).first
+  end
+
+  def friendship_requests
+    Friendship.where(friend_id: id, accepted: false)
+  end
+
   def films
     films_seen | films_to_see
   end

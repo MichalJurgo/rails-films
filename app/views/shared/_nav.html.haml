@@ -7,8 +7,10 @@
       %ul.navbar-nav.mr-auto
         %li= link_to "FILMS", films_path, class: 'nav-link'
         %li= link_to "NEWS", news_index_path, class: 'nav-link'
+        %li= link_to "USERS", users_path, class: 'nav-link' if user_signed_in?
       %ul.navbar-nav.ml-auto
         - if user_signed_in?
+          = render 'shared/notifications', user: current_user
           %li.nav-item.dropdown
             %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle"   => "dropdown", :href => "https://example.com"}
               = current_user.name

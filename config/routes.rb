@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :people, only: [:show]
   resources :news
   resources :libraries
-  resources :users, only: [:show]
+  resources :users, only: [:index, :show]
 end

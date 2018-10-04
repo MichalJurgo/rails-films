@@ -1,0 +1,16 @@
+.col-sm-6
+  .user-partial
+    .row
+      .col-md-3
+        = gravatar_for(user, size: 80)
+      .col-md-5
+        .size-80= link_to user.name, user
+        .size-80= user.birthday
+      .col-md-4
+        - if current_user.friends_with?(user)
+          = button_to 'Delete friend', friendship_path(id: current_user.friendship_with(user).id), method: :delete, class: 'btn btn-danger'
+        - elsif current_user.pending.include?(user)
+          = "Requested friendship"
+        - else
+          = button_to 'Add friend', friendships_path(friend_id: user), method: :post, class: 'btn btn-primary' unless user.eql?(current_user)
+  %hr

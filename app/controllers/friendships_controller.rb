@@ -24,6 +24,6 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to fallback_location: root_path
+    redirect_back fallback_location: root_path
   end
 end
