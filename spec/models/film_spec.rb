@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Film, type: :model do
@@ -9,12 +11,12 @@ RSpec.describe Film, type: :model do
     end
 
     it 'ensures title maximum length' do
-      film.title = 'a'*51
+      film.title = 'a' * 51
       expect(film.save).to eq(false)
     end
 
     it 'ensures short_description maxium length' do
-      film.short_description = 'a'*201
+      film.short_description = 'a' * 201
       expect(film.save).to eq(false)
     end
   end

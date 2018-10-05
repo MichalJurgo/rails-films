@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
@@ -13,7 +15,7 @@ RSpec.describe Genre, type: :model do
     let(:genre) { create(:genre) }
     let(:films) { create_list(:film, 3) }
     it 'can have multiple films' do
-      films.each.map { |film| film.genres << genre  }
+      films.each.map { |film| film.genres << genre }
       expect(genre.films.size).to eq(3)
     end
   end

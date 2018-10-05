@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -22,9 +24,8 @@ class User < ApplicationRecord
   ## The :user role is added by default and shouldn't be included in this list.             ##
   ## The :root_admin can access any page regardless of access settings. Use with caution!   ##
   ## The multiple option can be set to true if you need users to have multiple roles.       ##
-  petergate(roles: [:admin, :editor], multiple: false)                                      ##
+  petergate(roles: %i[admin editor], multiple: false) ##
   ############################################################################################
-
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -34,12 +35,12 @@ class User < ApplicationRecord
   validates :firstname, :lastname, length: { maximum: 30 }
 
   has_many :friendships
-	has_many :received_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :received_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
-	has_many :active_friends, -> { where(friendships: { accepted: true}) }, through: :friendships, source: :friend
-	has_many :received_friends, -> { where(friendships: { accepted: true}) }, through: :received_friendships, source: :user
-	has_many :pending_friends, -> { where(friendships: { accepted: false}) }, through: :friendships, source: :friend
-	has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
+  has_many :active_friends, -> { where(friendships: { accepted: true }) }, through: :friendships, source: :friend
+  has_many :received_friends, -> { where(friendships: { accepted: true }) }, through: :received_friendships, source: :user
+  has_many :pending_friends, -> { where(friendships: { accepted: false }) }, through: :friendships, source: :friend
+  has_many :requested_friendships, -> { where(friendships: { accepted: false }) }, through: :received_friendships, source: :user
 
   has_many :libraries, dependent: :destroy
   has_many :films_seen, -> { Library.seen }, through: :libraries, source: :film
@@ -50,27 +51,27 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def name
-   if !self.firstname.empty? || !self.lastname.empty?
-     "#{self.firstname} #{self.lastname}"
-   else
-     "User"
-   end
+    if !firstname.nil? || !lastname.nil?
+      "#{firstname} #{lastname}"
+    else
+      'User'
+    end
   end
 
   def friends
-	  active_friends | received_friends
-	end
+    active_friends | received_friends
+  end
 
   def pending
-		pending_friends | requested_friendships
-	end
+    pending_friends | requested_friendships
+  end
 
   def friends_with?(user)
     friends.include?(user)
   end
 
   def friendship_with(user)
-    Friendship.where("user_id = ? OR friend_id = ?", user.id, user.id).first
+    Friendship.where('user_id = ? OR friend_id = ?', user.id, user.id).first
   end
 
   def friendship_requests
@@ -87,10 +88,10 @@ class User < ApplicationRecord
 
   def average_rating
     reviews.average(:rating).to_f.round(1)
-	end
+  end
 
   def reviews_feed
-    friends_ids = friends.map { |f| f.id }
+    friends_ids = friends.map(&:id)
     Review.where('user_id IN (?)', friends_ids)
   end
 end

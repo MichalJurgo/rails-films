@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class NewsController < ApplicationController
-  access all: [:show, :index], [:admin, :editor] => :all
+  access all: %i[show index], %i[admin editor] => :all
 
   def index
     @news = News.order(created_at: :desc).page(params[:page]).per(6)
@@ -16,7 +18,7 @@ class NewsController < ApplicationController
 
   def create
     @news = current_user.news.new(news_params)
-    puts '='*80
+    puts '=' * 80
     puts @news.inspect
     if @news.save
       redirect_to @news
@@ -43,5 +45,4 @@ class NewsController < ApplicationController
   def news_params
     params.require(:news).permit(:heading, :body, :user_id, :film_id)
   end
-
 end

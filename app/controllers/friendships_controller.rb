@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id])
@@ -23,7 +25,7 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    flash[:notice] = "Removed friendship."
+    flash[:notice] = 'Removed friendship.'
     redirect_back fallback_location: root_path
   end
 end

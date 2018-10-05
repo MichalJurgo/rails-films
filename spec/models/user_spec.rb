@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context 'friends scopes tests' do
     let(:users) { create_list(:random_user, 6) }
-    puts "="*80
+    puts '=' * 80
     before(:each) do
       Friendship.new(user_id: users[0].id, friend_id: users[1].id, accepted: true).save
       Friendship.new(user_id: users[2].id, friend_id: users[0].id).save

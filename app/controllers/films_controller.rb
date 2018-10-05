@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FilmsController < ApplicationController
   def index
     @q = Film.ransack(params[:q])

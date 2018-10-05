@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: employments
@@ -17,8 +19,7 @@ class Employment < ApplicationRecord
   belongs_to :film
   belongs_to :person
 
-	scope :as_actor, -> { where(job: 'actor') }
-	scope :as_director, -> { where(job: 'director') }
-	scope :as_screenwriter, -> { where(job: 'screenwriter') }
-
+  scope :as_actor, -> { where(job: 'actor') }
+  scope :as_director, -> { where(job: 'director') }
+  scope :as_screenwriter, -> { where(job: 'screenwriter') }
 end

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include DeviseWhitelist
   before_action :store_user_location!, if: :storable_location?
 
   private
 
-  def after_sign_out_path_for(resource_or_scope)
+  def after_sign_out_path_for(_resource_or_scope)
     request.referrer
   end
 

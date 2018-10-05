@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LibrariesController < ApplicationController
   def create
     @library = Library.new(library_params)

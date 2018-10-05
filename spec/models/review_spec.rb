@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
@@ -15,7 +17,7 @@ RSpec.describe Review, type: :model do
     end
 
     it 'ensures body length lower than 2000' do
-      review.body = 'a'*2001
+      review.body = 'a' * 2001
       expect(review.save).to eq(false)
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
@@ -13,7 +15,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it 'ensures content length less than 1000' do
-      comment.content = 'a'*1001
+      comment.content = 'a' * 1001
       expect(comment.save).to eq(false)
     end
   end

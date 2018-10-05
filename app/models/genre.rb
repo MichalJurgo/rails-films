@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: genres
@@ -14,7 +16,7 @@ class Genre < ApplicationRecord
   has_and_belongs_to_many :films
 
   def self.list_genres
-    genres = Array.new
+    genres = []
     Genre.all.each do |g|
       genres << g.name
     end

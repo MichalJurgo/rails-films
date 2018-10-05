@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: people
@@ -21,6 +23,6 @@ class Person < ApplicationRecord
   has_many :written_films, -> { Employment.as_screenwriter }, class_name: 'Employment'
 
   def name
-    "#{self.firstname} #{self.lastname}"
+    "#{firstname} #{lastname}"
   end
 end

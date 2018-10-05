@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: films
@@ -30,12 +32,12 @@ class Film < ApplicationRecord
   has_many :reviews
 
   def year
-    self.release.year
+    release.year
   end
 
   def average_rating
     reviews.average(:rating).to_f.round(1)
-	end
+  end
 
   def self.recent
     Film.order(release: :desc).last(5)

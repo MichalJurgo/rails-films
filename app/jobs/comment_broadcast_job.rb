@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentBroadcastJob < ApplicationJob
   queue_as :default
 

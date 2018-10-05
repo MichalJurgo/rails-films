@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module FilmsHelper
   def film_cast(film)
     roles = film.actors
-    actors = Array.new
+    actors = []
     roles.each do |actor|
-      hash = Hash.new
+      hash = {}
       hash[:name] = actor.person.name
       hash[:role] = actor.role_details
       actors.push(hash)
@@ -16,7 +18,7 @@ module FilmsHelper
   end
 
   def list_genres(film)
-    genres = Array.new
+    genres = []
     film.genres.each do |genre|
       genres << genre.name
     end
@@ -24,6 +26,6 @@ module FilmsHelper
   end
 
   def calculate_duration(film)
-    "#{film.duration/60}h #{film.duration % 60}min"
+    "#{film.duration / 60}h #{film.duration % 60}min"
   end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Users", type: :feature do
+RSpec.feature 'Users', type: :feature do
   context 'create new user' do
     before(:each) do
       visit new_user_registration_path
@@ -14,7 +16,7 @@ RSpec.feature "Users", type: :feature do
       within('form') do
         fill_in 'user_password_confirmation', with: '123456'
       end
-      click_button 'Sign up'
+      click_button 'Register'
       expect(page).to have_content('Welcome! You have signed up successfully.')
     end
 
@@ -22,7 +24,7 @@ RSpec.feature "Users", type: :feature do
       within('form') do
         fill_in 'user_password_confirmation', with: '123457'
       end
-      click_button 'Sign up'
+      click_button 'Register'
       expect(page).to have_content('Password confirmation doesn\'t match Password')
     end
   end
@@ -84,8 +86,8 @@ RSpec.feature "Users", type: :feature do
 
     scenario 'should fail' do
       within('form') do
-        fill_in 'user_firstname', with: 'a'*31
-        fill_in 'user_lastname', with: 'a'*31
+        fill_in 'user_firstname', with: 'a' * 31
+        fill_in 'user_lastname', with: 'a' * 31
       end
       click_button 'Update'
       expect(page).to have_content 'Current password can\'t be blank'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeviseWhitelist
   extend ActiveSupport::Concern
 
@@ -6,7 +8,7 @@ module DeviseWhitelist
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:firstname, :lastname, :birthday])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:firstname, :lastname, :birthday])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[firstname lastname birthday])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[firstname lastname birthday])
   end
 end
