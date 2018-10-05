@@ -47,3 +47,4 @@ gem 'redcarpet', '~> 3.4'
 gem 'redis', '~> 4.0', '>= 4.0.2'
 gem 'rubocop', '~> 0.59.2', require: false
 gem 'simplecov', require: false, group: :test
+gem 'omniauth-facebook', '~> 5.0'
