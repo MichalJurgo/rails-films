@@ -41,12 +41,13 @@ class User < ApplicationRecord
 	has_many :pending_friends, -> { where(friendships: { accepted: false}) }, through: :friendships, source: :friend
 	has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
 
-  has_many :libraries
+  has_many :libraries, dependent: :destroy
   has_many :films_seen, -> { Library.seen }, through: :libraries, source: :film
   has_many :films_to_see, -> { Library.to_see }, through: :libraries, source: :film
 
-  has_many :news
-  has_many :reviews
+  has_many :news, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def name
    if !self.firstname.nil? || !self.lastname.nil?

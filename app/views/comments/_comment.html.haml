@@ -1,0 +1,11 @@
+.comment-card
+  .card
+    .card-body
+      .row
+        .col-md-2
+          = gravatar_for(comment.user, size: 60)
+        .col-md-10
+          %div
+            = link_to comment.user.name, comment.user
+            %span.size-80= comment.created_at
+          %div= comment.content

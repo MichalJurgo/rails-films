@@ -6,7 +6,8 @@ class NewsController < ApplicationController
   end
 
   def show
-    @news = News.find(params[:id])
+    @news = News.includes(:comments).find(params[:id])
+    @comment = Comment.new
   end
 
   def new

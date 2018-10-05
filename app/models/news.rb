@@ -14,6 +14,8 @@
 class News < ApplicationRecord
   validates :heading, :body, presence: true
 
+  has_many :comments, dependent: :destroy
+
   belongs_to :user
   belongs_to :film
 end

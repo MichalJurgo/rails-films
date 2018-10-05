@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :news
   resources :libraries
   resources :users, only: [:index, :show]
+
+  mount ActionCable.server => '/cable'
 end
