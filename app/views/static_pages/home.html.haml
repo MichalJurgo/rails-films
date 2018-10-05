@@ -7,7 +7,7 @@
           Recent news
           |
           = link_to 'See all', news_index_path
-        = render News.last(7)
+        = render News.last(7).reverse
     .col-md-6
       .recent-films
         %h2 Recent films

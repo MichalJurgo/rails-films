@@ -29,7 +29,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :rememberable, :validatable
 
   validates :firstname, :lastname, length: { maximum: 30 }
 
@@ -50,7 +50,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def name
-   if !self.firstname.nil? || !self.lastname.nil?
+   if !self.firstname.empty? || !self.lastname.empty?
      "#{self.firstname} #{self.lastname}"
    else
      "User"

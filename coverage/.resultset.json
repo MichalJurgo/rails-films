@@ -802,7 +802,6 @@
       "/home/michal/Pulpit/rails-workspace/rails-films/config/routes.rb": [
         1,
         1,
-        1,
         null,
         1,
         1,
@@ -812,6 +811,8 @@
         1,
         1,
         1,
+        1,
+        null,
         1,
         null
       ],
@@ -1531,6 +1532,8 @@
         1,
         null,
         1,
+        null,
+        1,
         null
       ],
       "/home/michal/Pulpit/rails-workspace/rails-films/spec/models/employment_spec.rb": [
@@ -2184,6 +2187,6 @@
         null
       ]
     },
-    "timestamp": 1538668944
+    "timestamp": 1538738006
   }
 }

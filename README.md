@@ -19,8 +19,10 @@ Rails application inspired by Filmweb.pl
   * Connects people to films by their role (actor, director etc.)
 * News
 * Adding films to user's library
+* Comments
+* Whole front end side of app.
 
 ## Content to add
 
-* Comments
-* Whole front end side of app.
+* Posts from twitter?
+* Login with facebook account?
