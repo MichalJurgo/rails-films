@@ -288,5 +288,5 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
 
-  config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_app_secret'], token_params: { parse: :json }
+  config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_app_secret'], scope: 'email', info_fields: 'email, first_name, last_name'
 end
