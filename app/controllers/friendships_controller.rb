@@ -2,7 +2,8 @@
 
 class FriendshipsController < ApplicationController
   def create
-    @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+    friend_id = User.friendly.find(params[:friend_id]).id;
+    @friendship = current_user.friendships.build(friend_id: friend_id)
     if @friendship.save
       flash[:notice] = 'Friend requested'
       redirect_back fallback_location: root_path

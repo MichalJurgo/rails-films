@@ -8,6 +8,7 @@ RSpec.feature 'Users', type: :feature do
       visit new_user_registration_path
       within('form') do
         fill_in 'user_email', with: 'sienkiewicz@example.com'
+        fill_in 'user_nickname', with: 'sienkiewicz'
         fill_in 'user_password', with: '123456'
       end
     end
@@ -30,7 +31,8 @@ RSpec.feature 'Users', type: :feature do
   end
 
   context 'log user in' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', password: '123456', password_confirmation: '123456') }
+    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
+                  password: '123456', password_confirmation: '123456') }
     before(:each) do
       visit new_user_session_path
     end
@@ -55,7 +57,8 @@ RSpec.feature 'Users', type: :feature do
   end
 
   context 'log user out' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', password: '123456', password_confirmation: '123456') }
+    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
+                  password: '123456', password_confirmation: '123456') }
     before(:each) do
       login_as(user, scope: :user)
     end
@@ -68,7 +71,8 @@ RSpec.feature 'Users', type: :feature do
   end
 
   context 'update user' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', password: '123456', password_confirmation: '123456') }
+    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
+                  password: '123456', password_confirmation: '123456') }
     before(:each) do
       login_as(user, scope: :user)
       visit edit_user_registration_path(user)
