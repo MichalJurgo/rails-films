@@ -3,6 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  context 'validation tests' do
+    let(:user) { build(:random_user) }
+    it 'ensures nickname presence' do
+      user.nickname = nil
+      expect(user.save).to eq(false)
+    end
+
+    it 'ensures nickname length less than 16' do
+      user.nickname = 'a' * 16
+      expect(user.save).to eq(false)
+    end
+
+    it 'ensures nickname length greater than 2' do
+      user.nickname = 'aa'
+      expect(user.save).to eq(false)
+    end
+  end
+
   context 'friends scopes tests' do
     let(:users) { create_list(:random_user, 6) }
     puts '=' * 80

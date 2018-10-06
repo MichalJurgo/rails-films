@@ -4,6 +4,7 @@ User.create!(
   email: 'skrzetuski@example.com',
   firstname: 'Jan',
   lastname: 'Skrzetuski',
+  nickname: 'skrzetuski',
   birthday: Date.parse('1630-12-12'),
   password: 'asdfgh',
   password_confirmation: 'asdfgh'
@@ -13,6 +14,7 @@ User.create!(
   email: 'zagloba@example.com',
   firstname: 'Jan',
   lastname: 'Zagłoba',
+  nickname: 'zagloba',
   birthday: Date.parse('1620-10-30'),
   password: 'asdfgh',
   password_confirmation: 'asdfgh'

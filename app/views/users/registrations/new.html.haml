@@ -5,15 +5,9 @@
     .form-group
       = f.label :email
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-    -# .form-group
-    -#   = f.label :firstname
-    -#   = f.text_field :firstname, autocomplete: 'off', class: 'form-control'
-    -# .form-group
-    -#   = f.label :lastname
-    -#   = f.text_field :lastname, autocomplete: 'off', class: 'form-control'
-    -# .form-group
-    -#   = f.label :birthday
-    -#   = f.date_field :birthday, autocomplete: 'off', class: 'form-control'
+    .form-group
+      = f.label :nickname
+      = f.text_field :nickname, autocomplete: 'off', class: 'form-control'
     .form-group
       = f.label :password
       = f.password_field :password, autocomplete: "off", class: 'form-control'

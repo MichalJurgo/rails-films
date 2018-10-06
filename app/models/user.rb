@@ -34,6 +34,10 @@ class User < ApplicationRecord
           omniauth_providers: %i[facebook]
 
   validates :firstname, :lastname, length: { maximum: 30 }
+  validates :nickname, presence: true, length: { minimum: 3, maximum: 15 }
+
+  extend FriendlyId
+  friendly_id :nickname, use: :slugged
 
   has_many :friendships
   has_many :received_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -55,6 +59,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      user.nickname = auth.info.name
       user.firstname = auth.info.first_name   # assuming the user model has a name
       user.lastname = auth.info.last_name   # assuming the user model has a name
       # user.image = auth.info.image # assuming the user model has an image
