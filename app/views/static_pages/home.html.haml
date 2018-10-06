@@ -1,25 +1,17 @@
-.homepage
-  %h1.text-center.font-weight-bold RAILS-FILMS
-  .row
-    .col-md-6
-      .recent-news
-        %h2
-          Recent news
-          |
-          = link_to 'See all', news_index_path
-        = render News.last(7).reverse
-    .col-md-6
-      .recent-films
-        %h2 Recent films
-        - Film.recent.each do |film|
-          .film-mini
-            %h5= link_to film.title, film_path(film)
-            %p= film.release
-            %p= film.short_description
-  %hr
-  .row
-    - if user_signed_in?
-      .col-md-6
-        .friends-reviews
-          %h2 Recent friends reviews
-          = render current_user.reviews_feed.last(5)
+.jumbotron
+  .container
+    %h1.display-3 Rails Films
+    %p
+      Ruby on Rails application inspired (partially) by Filmweb.pl. It covers
+      features like action cable comments or signing in with facebook account.
+    %p= link_to "Log in", new_user_session_path, class: 'btn basic-button btn-lg'
+
+.container.homepage
+  %h1.text-center.font-weight-bold Recent news
+  - @recent_news.in_groups_of(3, false) do |row|
+    .row
+      - row.each do |news|
+        .col-md-4
+          %h2= link_to news.heading, news, class: 'link-one'
+          %p= truncate(strip_tags(markdown(news.body)), length: 150)
+          %p= link_to 'Read more', news, class: 'btn basic-button'

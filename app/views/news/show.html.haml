@@ -1,13 +1,14 @@
-.news-show.col-md-9
-  %h1= @news.heading
-  %p.news-info
-    autor:
-    = link_to "#{@news.user.name}", user_path(@news.user)
-    = "| #{@news.created_at}"
-    - if logged_in? && current_user.editor?
-      = link_to '| edytuj', edit_news_path(@news)
-  .news-body
-    %p= markdown(@news.body)
-  = render 'comments/comment_form' if user_signed_in?
-  #comments{'data-news-id'=>"#{@news.id}"}
-    = render @news.comments
+.container
+  .news-show.col-md-9
+    %h1= @news.heading
+    %p.news-info
+      autor:
+      = link_to "#{@news.user.name}", user_path(@news.user)
+      = "| #{@news.created_at}"
+      - if logged_in? && current_user.editor?
+        = link_to '| edytuj', edit_news_path(@news)
+    .news-body
+      %p= markdown(@news.body)
+    = render 'comments/comment_form' if user_signed_in?
+    #comments{'data-news-id'=>"#{@news.id}"}
+      = render @news.comments

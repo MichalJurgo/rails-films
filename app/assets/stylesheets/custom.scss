@@ -68,29 +68,6 @@ body {
     text-align: left;
  }
 
-// HOME PAGE
-.homepage {
-  hr {
-    background-color: black;
-  }
-  .friends-reviews,.recent-news,.recent-films {
-    border: 1px solid black;
-    padding: 10px;
-    background-color: white;
-    margin: 10px 0;
-    .news-mini,.film-mini {
-      border: 1px solid black;
-      padding: 5px;
-      margin: 5px 0;
-      border-radius: 20px;
-      background-color: #f5f5f5;
-    }
-    .review {
-      background-color: #f5f5f5;
-    }
-  }
-}
-
 // FILMS INDEX PAGE
 .films-index {
   margin-top: 25px;

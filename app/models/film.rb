@@ -40,6 +40,6 @@ class Film < ApplicationRecord
   end
 
   def self.recent
-    Film.order(release: :desc).last(5)
+    Film.order(release: :desc).last(6)
   end
 end
