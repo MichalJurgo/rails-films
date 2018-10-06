@@ -1,9 +1,9 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark
   .container
     %a.navbar-brand{:href => root_path } RAILS-FILMS
     %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
+    #navbarCollapse.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
         %li= link_to "FILMS", films_path, class: 'nav-link'
         %li= link_to "NEWS", news_index_path, class: 'nav-link'

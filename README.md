@@ -22,7 +22,4 @@ Rails application inspired by Filmweb.pl
 * Comments
 * Whole front end side of app.
 
-## Content to add
-
-* Posts from twitter?
-* Login with facebook account?
+Readme to be refactored.
