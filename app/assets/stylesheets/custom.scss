@@ -98,12 +98,13 @@ body {
   ul {
     display: inline;
     padding-left: 5px;
-
     li {
       list-style-type: none;
       display: inline;
+      a {
+        margin-right: -4px;
+      }
     }
-
     li:not(:last-child):after {
       content: ", ";
     }

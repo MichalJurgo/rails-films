@@ -13,7 +13,7 @@ RSpec.feature 'Users', type: :feature do
       end
     end
 
-    scenario 'should be successful' do
+    scenario 'is successful' do
       within('form') do
         fill_in 'user_password_confirmation', with: '123456'
       end
@@ -21,7 +21,7 @@ RSpec.feature 'Users', type: :feature do
       expect(page).to have_content('Welcome! You have signed up successfully.')
     end
 
-    scenario 'should fail' do
+    scenario 'fails' do
       within('form') do
         fill_in 'user_password_confirmation', with: '123457'
       end
@@ -37,7 +37,7 @@ RSpec.feature 'Users', type: :feature do
       visit new_user_session_path
     end
 
-    scenario 'should be successful' do
+    scenario 'is successful' do
       within('form') do
         fill_in 'user_email', with: 'sienkiewicz@example.com'
         fill_in 'user_password', with: '123456'
@@ -46,7 +46,7 @@ RSpec.feature 'Users', type: :feature do
       expect(page).to have_content 'Signed in successfully.'
     end
 
-    scenario 'should fail' do
+    scenario 'fails' do
       within('form') do
         fill_in 'user_email', with: 'sienkiewicz@example.com'
         fill_in 'user_password', with: '123457'
@@ -63,7 +63,7 @@ RSpec.feature 'Users', type: :feature do
       login_as(user, scope: :user)
     end
 
-    scenario 'should be successful' do
+    scenario 'is successful' do
       visit root_path
       click_link('Logout')
       expect(page).to have_content 'Signed out successfully.'
@@ -78,7 +78,7 @@ RSpec.feature 'Users', type: :feature do
       visit edit_user_registration_path(user)
     end
 
-    scenario 'should be successful' do
+    scenario 'is successful' do
       within('form') do
         fill_in 'user_firstname', with: 'Henryk'
         fill_in 'user_lastname', with: 'Sienkiewicz'
@@ -88,7 +88,7 @@ RSpec.feature 'Users', type: :feature do
       expect(page).to have_content 'Your account has been updated successfully.'
     end
 
-    scenario 'should fail' do
+    scenario 'fails' do
       within('form') do
         fill_in 'user_firstname', with: 'a' * 31
         fill_in 'user_lastname', with: 'a' * 31

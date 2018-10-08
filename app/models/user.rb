@@ -114,9 +114,4 @@ class User < ApplicationRecord
   def average_rating
     reviews.average(:rating).to_f.round(1)
   end
-
-  def reviews_feed
-    friends_ids = friends.map(&:id)
-    Review.where('user_id IN (?)', friends_ids)
-  end
 end

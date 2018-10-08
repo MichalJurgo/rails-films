@@ -2,9 +2,8 @@
   .container
     %h1.display-3 Rails Films
     %p
-      Ruby on Rails application inspired (partially) by Filmweb.pl. It covers
-      features like action cable comments or signing in with facebook account.
-    %p= link_to "Log in", new_user_session_path, class: 'btn basic-button btn-lg'
+      Ruby on Rails application inspired (somewhat) by Filmweb.pl.
+    %p= link_to "Log in", new_user_session_path, class: 'btn basic-button btn-lg' if !user_signed_in?
 
 .container.homepage
   %h1.text-center.font-weight-bold Recent news

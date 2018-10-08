@@ -14,7 +14,7 @@ RSpec.describe Genre, type: :model do
   context 'association tests' do
     let(:genre) { create(:genre) }
     let(:films) { create_list(:film, 3) }
-    it 'can have multiple films' do
+    it 'has multiple films' do
       films.each.map { |film| film.genres << genre }
       expect(genre.films.size).to eq(3)
     end

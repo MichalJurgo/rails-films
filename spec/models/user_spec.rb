@@ -32,27 +32,27 @@ RSpec.describe User, type: :model do
       Friendship.new(user_id: users[0].id, friend_id: users[5].id).save
     end
 
-    it 'should return friends' do
+    it 'returns friends' do
       expect(users[0].friends.size).to eq(2)
     end
 
-    it 'should return pending' do
+    it 'returns pending' do
       expect(users[0].pending.size).to eq(3)
     end
 
-    it 'should return active_friends' do
+    it 'returns active_friends' do
       expect(users[0].active_friends.size).to eq(1)
     end
 
-    it 'should return receved_friends' do
+    it 'returns receved_friends' do
       expect(users[0].received_friends.size).to eq(1)
     end
 
-    it 'should return pending_friends' do
+    it 'returns pending_friends' do
       expect(users[0].pending_friends.size).to eq(2)
     end
 
-    it 'should return requested_friendships' do
+    it 'returns requested_friendships' do
       expect(users[0].requested_friendships.size).to eq(1)
     end
   end

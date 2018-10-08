@@ -17,7 +17,8 @@ User.create!(
   nickname: 'zagloba',
   birthday: Date.parse('1620-10-30'),
   password: 'asdfgh',
-  password_confirmation: 'asdfgh'
+  password_confirmation: 'asdfgh',
+  roles: (:editor)
 )
 
 Genre.create!(name: 'History')
@@ -72,22 +73,24 @@ end
 Status.create!(name: 'Seen')
 Status.create!(name: 'To see')
 
-20.times do
-  Person.create!(
-    firstname: Faker::Name.first_name,
-    lastname: Faker::Name.last_name,
-    birthday: Faker::Date.between(80.years.ago, 25.years.ago),
-    place_of_birth: "#{Faker::Address.city}, #{Faker::Address.country}",
-    biography: Faker::Lorem.paragraphs(10).join
-  )
-end
-
-5.times do
-  Employment.create!(
-    person: Person.all.sample,
-    film: Film.all.sample,
-    job: %w[actor director screenwriter].sample
-  )
+Film.all.each do |film|
+  for i in 1..10 do
+    person = Person.create!(
+      firstname: Faker::Name.first_name,
+      lastname: Faker::Name.last_name,
+      birthday: Faker::Date.between(80.years.ago, 25.years.ago),
+      place_of_birth: "#{Faker::Address.city}, #{Faker::Address.country}",
+      biography: Faker::Lorem.paragraphs(10).join
+    )
+    if i == 1
+      Employment.create!(film: film, person: person, job: 'director')
+    elsif i == 2
+      Employment.create!(film: film, person: person, job: 'screenwriter')
+    else
+      Employment.create!(film: film, person: person, job: 'actor',
+                         job_details: Faker::StarWars.character)
+    end
+  end
 end
 
 20.times do
