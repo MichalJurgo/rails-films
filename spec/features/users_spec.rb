@@ -30,17 +30,16 @@ RSpec.feature 'Users', type: :feature do
     end
   end
 
-  context 'log user in' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
-                  password: '123456', password_confirmation: '123456') }
+  context 'log in' do
+    let!(:user) { create(:random_user) }
     before(:each) do
       visit new_user_session_path
     end
 
     scenario 'is successful' do
       within('form') do
-        fill_in 'user_email', with: 'sienkiewicz@example.com'
-        fill_in 'user_password', with: '123456'
+        fill_in 'user_email', with: user.email
+        fill_in 'user_password', with: user.password
       end
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully.'
@@ -48,7 +47,7 @@ RSpec.feature 'Users', type: :feature do
 
     scenario 'fails' do
       within('form') do
-        fill_in 'user_email', with: 'sienkiewicz@example.com'
+        fill_in 'user_email', with: user.email
         fill_in 'user_password', with: '123457'
       end
       click_button 'Log in'
@@ -56,9 +55,8 @@ RSpec.feature 'Users', type: :feature do
     end
   end
 
-  context 'log user out' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
-                  password: '123456', password_confirmation: '123456') }
+  context 'log out' do
+    let!(:user) { create(:random_user) }
     before(:each) do
       login_as(user, scope: :user)
     end
@@ -71,8 +69,7 @@ RSpec.feature 'Users', type: :feature do
   end
 
   context 'update user' do
-    let!(:user) { User.create(email: 'sienkiewicz@example.com', nickname: 'sienkiewicz',
-                  password: '123456', password_confirmation: '123456') }
+    let!(:user) { create(:random_user) }
     before(:each) do
       login_as(user, scope: :user)
       visit edit_user_registration_path(user)

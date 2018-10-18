@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Library, type: :model do
   context 'validation tests' do
-    let(:user) { create(:random_user) }
-    let(:film) { create(:film) }
-    let(:library) { build(:library, user: user, film: film) }
+    let(:library) { build(:library_with_associations) }
     it 'ensures user_id presence' do
       library.user = nil
       expect(library.save).to eq(false)
@@ -23,26 +21,14 @@ RSpec.describe Library, type: :model do
     end
   end
 
-  context 'scopes tests' do
-    let(:user) { create(:random_user) }
-    let(:film) { create(:film) }
-    let(:libraries) { build_list(:library, 2) }
+  context 'scopes' do
+    let!(:libraries) { create_list(:library_with_associations, 2) }
     it 'has seen scope' do
-      libraries.map do |library|
-        library.user = user
-        library.film = film
-        library.save
-      end
       expect(Library.seen.size).to eq(2)
     end
 
     it 'has to_see scope' do
-      libraries.map do |library|
-        library.user = user
-        library.film = film
-        library.status_id = 2
-        library.save
-      end
+      libraries.map { |library| library.update(status_id: 2) }
       expect(Library.to_see.size).to eq(2)
     end
   end

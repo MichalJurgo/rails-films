@@ -21,61 +21,80 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'friends scopes tests' do
-    let(:users) { create_list(:random_user, 6) }
-    puts '=' * 80
-    before(:each) do
-      Friendship.new(user_id: users[0].id, friend_id: users[1].id, accepted: true).save
-      Friendship.new(user_id: users[2].id, friend_id: users[0].id).save
-      Friendship.new(user_id: users[3].id, friend_id: users[0].id, accepted: true).save
-      Friendship.new(user_id: users[0].id, friend_id: users[4].id).save
-      Friendship.new(user_id: users[0].id, friend_id: users[5].id).save
-    end
+  context "methods" do
+    let!(:user) { create(:random_user) }
+    let!(:friendship) { create(:friendship_with_friend, user: user) }
+    let(:film) { create(:film) }
+    let!(:library) { create(:library, user: user, film: film) }
+    let!(:review) { create(:review, film: film, user: user) }
 
-    it 'returns friends' do
-      expect(users[0].friends.size).to eq(2)
-    end
+    describe "#name" do
+      it "returns user's full name if possible" do
+        expect(user.name).to eq("#{user.firstname} #{user.lastname}")
+      end
 
-    it 'returns pending' do
-      expect(users[0].pending.size).to eq(3)
-    end
-
-    it 'returns active_friends' do
-      expect(users[0].active_friends.size).to eq(1)
-    end
-
-    it 'returns receved_friends' do
-      expect(users[0].received_friends.size).to eq(1)
-    end
-
-    it 'returns pending_friends' do
-      expect(users[0].pending_friends.size).to eq(2)
-    end
-
-    it 'returns requested_friendships' do
-      expect(users[0].requested_friendships.size).to eq(1)
-    end
-  end
-
-  context 'library scopes tests' do
-    let(:user) { create(:random_user) }
-    let(:films) { create_list(:film, 5) }
-    let(:libraries) { build_list(:library, 5) }
-    before(:each) do
-      libraries.each_with_index.map do |library, i|
-        library.film = films[i]
-        library.user = user
-        library.save
+      it "returns 'user' when firstname and lastname not defined" do
+        user.firstname = user.lastname = nil
+        expect(user.name).to eq("User")
       end
     end
 
-    it 'has films_seen' do
-      expect(user.films_seen.size).to eq(5)
+    describe "#friends" do
+      it "returns user's friends" do
+        friendship.update(accepted: true)
+        expect(user.friends.size).to eq(1)
+      end
     end
 
-    it 'has films_to_see' do
-      libraries.last(2).map { |library| library.update(status_id: 2) }
-      expect(user.films_to_see.size).to eq(2)
+    describe "#pending" do
+      it "returns pending friendships" do
+        expect(user.pending.size).to eq(1)
+      end
+    end
+
+    describe "#friends_with?" do
+      it "returns true if user is a friend with given user" do
+        friendship.update(accepted: true)
+        expect(user.friends_with?(friendship.friend)).to eq(true)
+      end
+      
+      it "returns false if user is not a friend with given user" do
+        some_user = create(:random_user)
+        expect(user.friends_with?(some_user)).to eq(false)
+      end
+    end
+
+    describe "#friendship_with" do
+      it "returns friendship with given user" do
+        expect(user.friendship_with(friendship.friend)).to eq(friendship)
+      end
+    end
+
+    describe "#friendship_requests" do
+      it "returns friendships from received requests" do
+        received_friendship = create(:friendship_with_user, friend: user)
+        expect(user.friendship_requests.first).to eq(received_friendship)
+      end
+    end
+
+    describe "#films" do
+      it "returns all user's films" do
+        expect(user.films.count).to eq(1)
+        expect(user.films.first).to eq(library.film)
+      end
+    end
+
+    describe "#film_review" do
+      it "returns user's review for given film if it exists" do
+        expect(user.film_review(film).first).to eq(review)
+      end
+    end
+
+    describe "#average_rating" do
+      it "returns user's average films rating" do
+        some_review = create(:review_with_film, user: user, rating: 2)
+        expect(user.average_rating).to eq(1.5)
+      end
     end
   end
 end

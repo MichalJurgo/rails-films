@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Employment, type: :model do
   context 'validation tests' do
-    let(:person) { create(:person) }
-    let(:film) { create(:film) }
-    let(:employment) { build(:employment, person: person, film: film) }
+    let(:employment) { build(:employment_with_associations) }
 
     it 'ensures person presence' do
       employment.person = nil
@@ -25,16 +23,7 @@ RSpec.describe Employment, type: :model do
   end
 
   context 'scopes tests' do
-    let(:person) { create(:person) }
-    let(:film) { create(:film) }
-    let(:employments) { build_list(:employment, 2) }
-    before(:each) do
-      employments.map do |e|
-        e.person = person
-        e.film = film
-        e.save
-      end
-    end
+    let!(:employments) { create_list(:employment_with_associations, 2) }
     it 'has as_actor scope' do
       expect(Employment.as_actor.size).to eq(2)
     end

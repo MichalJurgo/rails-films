@@ -4,13 +4,7 @@ require 'rails_helper'
 
 RSpec.describe News, type: :model do
   context 'validation test' do
-    let(:news) { build(:news) }
-    let(:user) { create(:random_user) }
-    let(:film) { create(:film) }
-    before(:each) do
-      news.user = user
-      news.film = film
-    end
+    let(:news) { build(:news_with_associations) }
     it 'ensures heading presence' do
       news.heading = nil
       expect(news.save).to eq(false)

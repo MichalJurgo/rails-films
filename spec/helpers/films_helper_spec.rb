@@ -2,15 +2,26 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the FilmsHelper. For example:
-#
-# describe FilmsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe FilmsHelper, type: :helper do
+  let!(:film) { create(:film) }
+  let!(:genres) { create_list(:genre, 2) }
+  describe "list_production" do
+    it "lists production countries for given movie" do
+      expect(list_production(film)).to include(film.production.first)
+    end
+  end
+
+  describe "list_genres" do
+    it "lists genres names for given movie" do
+      film.genres << genres.first
+      film.genres << genres.second
+      expect(list_genres(film)).to eq("#{genres.first.name}, #{genres.second.name}")
+    end
+  end
+
+  describe "calculate_duration" do
+    it "returns formatted duration for given film" do
+      expect(calculate_duration(film)).to eq("#{film.duration / 60}h #{film.duration % 60}min")
+    end
+  end
 end

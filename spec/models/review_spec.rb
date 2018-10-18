@@ -5,12 +5,7 @@ require 'rails_helper'
 RSpec.describe Review, type: :model do
   context 'validation tests' do
     let(:review) { build(:review) }
-    let(:user) { create(:random_user) }
-    let(:film) { create(:film) }
-    before(:each) do
-      review.user = user
-      review.film = film
-    end
+
     it 'ensures body presence' do
       review.body = nil
       expect(review.save).to eq(false)

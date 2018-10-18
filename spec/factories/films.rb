@@ -9,4 +9,5 @@ FactoryBot.define do
     release { '2018-09-29' }
     production { ['USA', 'Great Britain'] }
   end
+  
 end

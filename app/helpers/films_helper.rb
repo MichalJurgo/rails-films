@@ -1,18 +1,6 @@
 # frozen_string_literal: true
 
 module FilmsHelper
-  def film_cast(film)
-    roles = film.actors
-    actors = []
-    roles.each do |actor|
-      hash = {}
-      hash[:name] = actor.person.name
-      hash[:role] = actor.role_details
-      actors.push(hash)
-    end
-    actors
-  end
-
   def list_production(film)
     film.production.join(', ')
   end

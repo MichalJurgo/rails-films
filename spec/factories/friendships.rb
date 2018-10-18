@@ -2,8 +2,25 @@
 
 FactoryBot.define do
   factory :friendship do
-    user { nil }
-    friend { nil }
     accepted { false }
+
+    factory :friendship_with_associations do
+      after(:build) do |friendship|
+        friendship.user = create(:random_user)
+        friendship.friend = create(:random_user)
+      end
+    end
+    
+    factory :friendship_with_friend do
+      after(:build) do |friendship|
+        friendship.friend = create(:random_user)
+      end
+    end
+
+    factory :friendship_with_user do
+      after(:build) do |friendship|
+        friendship.user = create(:random_user)
+      end
+    end
   end
 end

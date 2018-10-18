@@ -23,14 +23,12 @@ RSpec.describe Person, type: :model do
     end
   end
 
-  context 'scopes tests' do
+  context 'associations' do
     let(:person) { create(:person) }
-    let(:film) { create(:film) }
-    let(:employments) { build_list(:employment, 2) }
+    let(:employments) { build_list(:employment_with_associations, 2) }
     before(:each) do
       employments.map do |e|
         e.person = person
-        e.film = film
         e.save
       end
     end

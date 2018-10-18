@@ -10,7 +10,7 @@
   - @recent_news.in_groups_of(3, false) do |row|
     .row
       - row.each do |news|
-        .col-md-4
+        .col-md-4.news-preview
           %h2= link_to news.heading, news, class: 'link-one'
           %p= truncate(strip_tags(markdown(news.body)), length: 150)
           %p= link_to 'Read more', news, class: 'btn basic-button'

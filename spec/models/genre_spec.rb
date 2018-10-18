@@ -11,12 +11,21 @@ RSpec.describe Genre, type: :model do
     end
   end
 
-  context 'association tests' do
+  context 'association' do
     let(:genre) { create(:genre) }
     let(:films) { create_list(:film, 3) }
     it 'has multiple films' do
       films.each.map { |film| film.genres << genre }
       expect(genre.films.size).to eq(3)
+    end
+  end
+
+  context "methods" do
+    let!(:genres) { create_list(:genre, 2) }
+    describe ".list_genres" do
+      it "returns array with all genres names" do
+        expect(Genre.list_genres).to eq(genres.map{|g| g.name})
+      end
     end
   end
 end
