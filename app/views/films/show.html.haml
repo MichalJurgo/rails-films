@@ -4,8 +4,8 @@
       .col-md-8.film-details
         %h1
           = @film.title
-          %span.half-size= "(#{@film.release.year})"
-        %p= calculate_duration(@film)
+          %span.half-size= "(#{@film.year})"
+        %p= @film.calculated_duration
         %p= @film.short_description
         %table
           %tbody
@@ -22,11 +22,11 @@
             %tr
               %th genre:
               %td
-                = list_genres(@film)
+                = @film.genres_list
             %tr
               %th prodution:
               %td
-                = list_production(@film)
+                = @film.production_list
             %tr
               %th release:
               %td
