@@ -30,12 +30,4 @@ class Film < ApplicationRecord
 
   has_many :news
   has_many :reviews
-
-  def year
-    release.year
-  end
-
-  def average_rating
-    reviews.average(:rating).to_f.round(1)
-  end
 end
