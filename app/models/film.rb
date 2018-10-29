@@ -21,7 +21,7 @@ class Film < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :short_description, length: { maximum: 200 }
 
-  has_and_belongs_to_many :genres
+  has_and_belongs_to_many :genres, before_add: :check_genres_size
   has_many :employments
   has_many :people, through: :employments
   has_many :actors, -> { Employment.as_actor }, class_name: 'Employment'
@@ -30,4 +30,8 @@ class Film < ApplicationRecord
 
   has_many :news
   has_many :reviews
+
+  def check_genres_size genre
+    raise ActiveRecord::Rollback if genres.size > 2
+  end
 end

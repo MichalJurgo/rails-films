@@ -16,10 +16,6 @@ class Genre < ApplicationRecord
   has_and_belongs_to_many :films
 
   def self.list_genres
-    genres = []
-    Genre.all.each do |g|
-      genres << g.name
-    end
-    genres
+    Genre.pluck(:name)
   end
 end

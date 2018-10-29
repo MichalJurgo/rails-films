@@ -24,11 +24,16 @@ RSpec.describe Film, type: :model do
   context 'associations' do
     let(:film) { create(:film) }
     let(:person) { create(:person) }
-    let(:genre) { create(:genre) }
+    let(:genres) { create_list(:genre, 4)}
     let(:employment) { create(:employment, film: film, person: person) }
     it 'has genres' do
-      film.genres << genre
-      expect(film.genres.size).to eq(1)
+      film.genres << genres[0..2]
+      expect(film.genres.size).to eq(3)
+    end
+
+    it 'has maximum of 3 genres' do
+      film.genres << genres
+      expect(film.genres.size).to eq(3)
     end
 
     it 'has directors' do
@@ -44,23 +49,6 @@ RSpec.describe Film, type: :model do
     it 'has screenwriters' do
       employment.update(job: 'screenwriter')
       expect(film.screenwriters.size).to eq(1)
-    end
-  end
-
-  context "methods" do
-    let(:film) { create(:film) }
-    describe "#year" do
-      it "returns release year" do
-        expect(film.year).to eq(film.release.year)
-      end
-    end
-
-    describe "#average_rating" do
-      it "returns film's average rating" do
-        review1 = create(:review_with_user, film: film, rating: 2)
-        review2 = create(:review_with_user, film: film, rating: 3)
-        expect(film.average_rating).to eq(2.5)
-      end
     end
   end
 end
