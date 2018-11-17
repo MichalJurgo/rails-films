@@ -19,7 +19,7 @@ class Employment < ApplicationRecord
   belongs_to :film
   belongs_to :person
 
-  scope :as_actor, -> { where(job: 'actor') }
-  scope :as_director, -> { where(job: 'director') }
-  scope :as_screenwriter, -> { where(job: 'screenwriter') }
+  scope :as_actor, -> { EmploymentsQuery.new.as_actor }
+  scope :as_director, -> { EmploymentsQuery.new.as_director }
+  scope :as_screenwriter, -> { EmploymentsQuery.new.as_screenwriter }
 end

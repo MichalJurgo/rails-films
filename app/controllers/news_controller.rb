@@ -4,7 +4,7 @@ class NewsController < ApplicationController
   access all: %i[show index], %i[admin editor] => :all
 
   def index
-    @news = News.order(created_at: :desc).page(params[:page]).per(6)
+    @news = NewsQuery.new.ordered_by_creation_time.page(params[:page]).per(6)
   end
 
   def show
