@@ -18,8 +18,6 @@ class NewsController < ApplicationController
 
   def create
     @news = current_user.news.new(news_params)
-    puts '=' * 80
-    puts @news.inspect
     if @news.save
       redirect_to @news
     else

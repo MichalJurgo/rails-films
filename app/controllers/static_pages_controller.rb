@@ -2,6 +2,6 @@
 
 class StaticPagesController < ApplicationController
   def home
-    @recent_news = News.last(6).reverse
+    @recent_news = NewsQuery.new.recent
   end
 end

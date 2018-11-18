@@ -4,7 +4,7 @@
       Write review for
       = @film.title
     .form-group
-      = form.text_area :body, rows: 15, placeholder: 'Tell others what you think about this movie!', class: 'form-control'
+      = form.text_area :body, rows: 15, placeholder: 'Tell others what you think about this movie!', required: true, class: 'form-control'
     .form-group
       = form.label :rating, 'Rate this film!'
       = form.select :rating, 1..10, {}, { class: 'form-control' }
